@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/create', [UserController::class, 'create']);
 Route::get('/users/{id}', [UserController::class, 'mostrarNomeDoUsuario']);
 Route::post('/users', [UserController::class, 'store']);
+
+Route::get('/test', [TestController::class, 'test']);
