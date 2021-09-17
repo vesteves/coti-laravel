@@ -19,7 +19,16 @@ Route::get('/', function () {
 });
 
 Route::prefix('products')->group(function () {
-    Route::get('{id}', [
+    Route::get('create', [
+        ProductController::class, 'create'
+    ]);
+
+    // http://localhost:8000/products
+    Route::post('/', [
+        ProductController::class, 'store'
+    ]);
+
+    Route::get('{product}', [
         ProductController::class, 'show'
     ]);
 });

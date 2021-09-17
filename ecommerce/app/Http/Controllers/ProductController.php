@@ -2,19 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = [
-            "id" => 1,
-            "title" => "Produto 1",
-            "description" => "Este é um produto de número 1",
-            "img" => "https://via.placeholder.com/400x400",
-            "price" => "R$ 12,50"
-        ];
         return view('products.show', ["product" => $product]);
+    }
+
+    public function create()
+    {
+        return view('products.create');
+    }
+
+    public function store(Request $qquernome)
+    {
+        $product = Product::create([
+            "title" => $qquernome->title,
+            "description" => $qquernome->description,
+            "img" => $qquernome->img,
+            "price" => $qquernome->price
+        ]);
+
+        dd($product);
+
+        // criar o produto
+        return back();
     }
 }
