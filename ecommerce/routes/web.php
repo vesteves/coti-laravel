@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,5 @@ Route::prefix('products')->group(function () {
         ProductController::class, 'show'
     ]);
 });
+
+Route::get('/email', [EmailController::class, 'email']);
