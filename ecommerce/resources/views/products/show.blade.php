@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row mb-4">
         <div class="col-5" style="background-color: #bf0041; color: #fff; text-align: center;">
-            <img src="{{ $product['img'] }}">
+            <img src="{{ asset($product['img']) }}">
         </div>
         <div class="col-1" style="text-align: center;">
             VAZIO

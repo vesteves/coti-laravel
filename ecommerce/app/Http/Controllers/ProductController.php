@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProdutcStoreRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     public function show(Product $product)
     {
+        $product->img = Storage::url($product->img);
         return view('products.show', ["product" => $product]);
     }
 
@@ -17,16 +20,14 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function store(Request $qquernome)
+    public function store(ProdutcStoreRequest $request)
     {
-        $product = Product::create([
-            "title" => $qquernome->title,
-            "description" => $qquernome->description,
-            "img" => $qquernome->img,
-            "price" => $qquernome->price
+        Product::create([
+            "title" => $request->title,
+            "description" => $request->description,
+            "img" => $request->img->store('images', 'public'),
+            "price" => $request->price
         ]);
-
-        dd($product);
 
         // criar o produto
         return back();
