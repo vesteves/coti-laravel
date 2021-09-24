@@ -9,7 +9,9 @@
 </head>
 
 <body>
-    <div style="color: green; font-size: 30px; text-align: center;">Este é um e-mail de teste</div>
+    <div style="color: green; font-size: 30px; text-align: center;">
+        O cliente {{ $user->name }} - {{ $user->email }} está interessado no produto {{ $product->id }} - {{ $product->name }} que está no preço {{ $product->price }}.
+    </div>
 </body>
 
 </html>

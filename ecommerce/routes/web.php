@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    ProductController::class, 'index'
+]);
 
 Route::prefix('products')->group(function () {
     Route::get('create', [
@@ -34,4 +35,20 @@ Route::prefix('products')->group(function () {
     ]);
 });
 
+Route::prefix('orders')->group(function () {
+    Route::get('/', [
+        OrderController::class, 'index'
+    ]);
+
+    Route::post('/', [
+        OrderController::class, 'store'
+    ]);
+});
+
 Route::get('/email', [EmailController::class, 'email']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';

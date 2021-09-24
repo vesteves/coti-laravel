@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    public function index()
+    {
+        $products = Product::all();
+        foreach ($products as $index => $product) {
+            $products[$index]->img = Storage::url($product->img);
+        }
+        return view('welcome', [
+            'products' => $products
+        ]);
+    }
+
     public function show(Product $product)
     {
         $product->img = Storage::url($product->img);
